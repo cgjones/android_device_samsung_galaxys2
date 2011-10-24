@@ -26,6 +26,8 @@ case "$DEVICE_BUILD_ID" in
   FIRMWARE=XWKE2 ;;
 "GWK74")
   FIRMWARE=GWK74 ;;
+"GINGERBREAD.ZSKI3")
+  FIRMWARE=ZSKI3 ;;
 *)
   echo Warning, your device has unknown firmware $DEVICE_BUILD_ID >&2
   FIRMWARE=unknown ;;
@@ -154,9 +156,14 @@ COMMON_LIBS="
 	libtvoutservice.so
 	libtvout.so
 	"
-if [ $FIRMWARE != "UHKG7" ] && [ $FIRMWARE != "GWK74" ]
+if [ $FIRMWARE != "UHKG7" ] && [ $FIRMWARE != "GWK74" ] && \
+    [ $FIRMWARE != "ZSKI3" ]
 then
     COMMON_LIBS="$COMMON_LIBS libsecjpegencoder.so"
+fi
+if [ $FIRMWARE == "ZSKI3" ]
+then
+    COMMON_LIBS="$COMMON_LIBS libsecjpeginterface.so"
 fi
 copy_files "$COMMON_LIBS" "system/lib" ""
 
@@ -167,7 +174,7 @@ COMMON_BINS="
 	"
 copy_files "$COMMON_BINS" "system/bin" ""
 
-if [ $FIRMWARE != "UHKG7" ] 
+if [ $FIRMWARE != "UHKG7" -a $FIRMWARE != "ZSKI3" -a $FIRMWARE != "ZSKI3" ] 
 then
 COMMON_CAMERADATA="
 	datapattern_420sp.yuv
@@ -208,13 +215,19 @@ else
 	acoustics.default.so
 	alsa.default.so
 	copybit.GT-I9100.so
-	gps.GT-I9100.so
 	gralloc.default.so
 	gralloc.GT-I9100.so
 	lights.GT-I9100.so
 	overlay.GT-I9100.so
 	sensors.GT-I9100.so
 	"
+fi
+
+if [ $FIRMWARE = "ZSKI3" ]
+then
+    COMMON_HW="$COMMON_HW gps.s5pc210.so"
+else
+    COMMON_HW="$COMMON_HW gps.GT-I9100.so"
 fi
 
 copy_files "$COMMON_HW" "system/lib/hw" "hw"
