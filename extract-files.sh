@@ -161,9 +161,13 @@ if [ $FIRMWARE != "UHKG7" ] && [ $FIRMWARE != "GWK74" ] && \
 then
     COMMON_LIBS="$COMMON_LIBS libsecjpegencoder.so"
 fi
-if [ $FIRMWARE == "ZSKI3" ]
+if [ $FIRMWARE = "ZSKI3" ]
 then
-    COMMON_LIBS="$COMMON_LIBS libsecjpeginterface.so"
+    COMMON_LIBS="$COMMON_LIBS
+	libsecjpeginterface.so
+	libsecjpegboard.so
+	libsecjpegarcsoft.so
+	"
 fi
 copy_files "$COMMON_LIBS" "system/lib" ""
 
