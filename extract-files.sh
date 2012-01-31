@@ -265,7 +265,7 @@ if [ $FIRMWARE = "ZSKI3" ]; then
 fi
 
 if [ $FIRMWARE != "ZNKG5" -a $FIRMWARE != "XWKE7" ]; then
-	COMMON_WIFI = "$COMMON_WIFI bcm4330_aps.bin"
+    COMMON_WIFI="$COMMON_WIFI bcm4330_aps.bin"
 fi
 
 if [ $FIRMWARE = "GWK74" ]; then
