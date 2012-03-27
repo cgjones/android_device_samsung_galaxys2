@@ -132,13 +132,17 @@ EOF
 # $4 = directory name in $PROPRIETARY_COMMON_DIR
 copy_file()
 {
-    echo Pulling \"$1\"
     if [[ -z "${ANDROIDFS_DIR}" ]]; then
+        echo Pulling \"$1\"
         adb pull /$3/$1 $PROPRIETARY_COMMON_DIR/$4/$2
     else
            # Hint: Uncomment the next line to populate a fresh ANDROIDFS_DIR
            #       (TODO: Make this a command-line option or something.)
            # adb pull /$3/$1 ${ANDROIDFS_DIR}/$3/$1
+        echo Pulling \"$1\"
+        local TARGET=$PROPRIETARY_COMMON_DIR/$4/$2
+        local TARGET_DIR=$(dirname "$TARGET")
+        mkdir -p $TARGET_DIR
         cp ${ANDROIDFS_DIR}/$3/$1 $PROPRIETARY_COMMON_DIR/$4/$2
     fi
 
