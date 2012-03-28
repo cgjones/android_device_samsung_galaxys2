@@ -53,6 +53,11 @@ fi
 # Extracting binary blobs from CyanogenMod image
 
 unzip -q $CM_IMAGE -d $CM_ROOT
+RET="$?"
+if [ $RET -ne 0 ]; then
+  echo unzip filed, removing $CM_IMAGE.
+  rm $CM_IMAGE
+fi
 
 COMMON_LIBS="
 	"
