@@ -44,11 +44,9 @@ copy_cm_files()
 # Download CyanogenMod image
 
 echo Downloading CyanogenMod image $CM_IMAGE ...
-if [ -f $CM_IMAGE ]; then
-  echo Image $CM_IMAGE exists, skip downloading
-else
-  wget $CM_DOWNLOAD_SITE/$CM_IMAGE
-fi
+
+wget -c $CM_DOWNLOAD_SITE/$CM_IMAGE
+
 
 # Extracting binary blobs from CyanogenMod image
 
