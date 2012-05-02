@@ -50,6 +50,8 @@ case "$DEVICE_BUILD_ID" in
   FIRMWARE=XXKI4 ;;
 "GINGERBREAD.DXKG3")
   FIRMWARE=DXKG3 ;;
+"GINGERBREAD.BGKJ3")
+  FIRMWARE=BGKJ3 ;;
 *)
   echo Your device has unknown firmware $DEVICE_BUILD_ID >&2
   exit 1 ;;
@@ -210,7 +212,7 @@ COMMON_LIBS="
 	libtvoutservice.so
 	libtvout.so
 	"
-if [ $FIRMWARE = "UHKG7" -o $FIRMWARE = "ZSKI3" -o $FIRMWARE = "UHKI2" -o $FIRMWARE = "XWKI4" -o $FIRMWARE = "XWKJ2" -o $FIRMWARE = "XXKI3" -o $FIRMWARE = "XXKI4" -o $FIRMWARE = "ZNKG5" ]
+if [ $FIRMWARE = "UHKG7" -o $FIRMWARE = "ZSKI3" -o $FIRMWARE = "UHKI2" -o $FIRMWARE = "XWKI4" -o $FIRMWARE = "XWKJ2" -o $FIRMWARE = "XXKI3" -o $FIRMWARE = "XXKI4" -o $FIRMWARE = "ZNKG5" -o $FIRMWARE = "BGKJ3" ]
 then
     COMMON_LIBS="$COMMON_LIBS
                  libsecjpeginterface.so
@@ -222,7 +224,8 @@ if [ $FIRMWARE != "UHKG7" ] && [ $FIRMWARE != "ZSKI3" ] && \
    [ $FIRMWARE != "GWK74" ] && [ $FIRMWARE != "UHKI2" ] && \
    [ $FIRMWARE != "XWKI4" ] && [ $FIRMWARE != "ZNKG5" ] && \
    [ $FIRMWARE != "XWKE7" ] && [ $FIRMWARE != "XXKI3" ] && \
-   [ $FIRMWARE != "XWKJ2" ] && [ $FIRMWARE != "XXKI4" ]
+   [ $FIRMWARE != "XWKJ2" ] && [ $FIRMWARE != "XXKI4" ] && \
+   [ $FIRMWARE != "BGKJ3" ]
 then
     COMMON_LIBS="$COMMON_LIBS libsecjpegencoder.so"
 fi
@@ -243,7 +246,7 @@ COMMON_BINS="
 	"
 copy_files "$COMMON_BINS" "system/bin" ""
 
-if [ $FIRMWARE != "UHKG7" -a $FIRMWARE != "ZSKI3" -a $FIRMWARE != "UHKI2" -a $FIRMWARE != "XWKI4" -a $FIRMWARE != "ZNKG5" -a $FIRMWARE = "XWKE7" -a $FIRMWARE != "XXKI3" -a $FIRMWARE != "XWKJ2" ]
+if [ $FIRMWARE != "UHKG7" -a $FIRMWARE != "ZSKI3" -a $FIRMWARE != "UHKI2" -a $FIRMWARE != "XWKI4" -a $FIRMWARE != "ZNKG5" -a $FIRMWARE = "XWKE7" -a $FIRMWARE != "XXKI3" -a $FIRMWARE != "XWKJ2" -a $FIRMWARE != "BGKJ3" ]
 then
 COMMON_CAMERADATA="
 	datapattern_420sp.yuv
@@ -291,7 +294,7 @@ else
 	"
 fi
 
-if [ $FIRMWARE = "ZSKI3" -o $FIRMWARE = "UHKI2" -o $FIRMWARE = "XWKI4" -o $FIRMWARE = "XXKI3" -o $FIRMWARE = "XWKJ2" -o $FIRMWARE = "XXKI4" ]
+if [ $FIRMWARE = "ZSKI3" -o $FIRMWARE = "UHKI2" -o $FIRMWARE = "XWKI4" -o $FIRMWARE = "XXKI3" -o $FIRMWARE = "XWKJ2" -o $FIRMWARE = "XXKI4" -o $FIRMWARE = "BGKJ3" ]
 then
     copy_file "gps.s5pc210.so" "vendor-gps.smdkv310.so" "system/lib/hw" "hw"
 else
@@ -327,7 +330,7 @@ COMMON_WIFI="
 	wifi.conf
 	wpa_supplicant.conf
 	"
-if [ $FIRMWARE = "ZSKI3" -o $FIRMWARE = "XXKI3" -o $FIRMWARE = "XXKI4" -o $FIRMWARE = "XWKI4" -o $FIRMWARE = "UHKI2" -o $FIRMWARE = "ZNKG5" ]; then
+if [ $FIRMWARE = "ZSKI3" -o $FIRMWARE = "XXKI3" -o $FIRMWARE = "XXKI4" -o $FIRMWARE = "XWKI4" -o $FIRMWARE = "UHKI2" -o $FIRMWARE = "ZNKG5" -o $FIRMWARE = "BGKJ3" ]; then
     COMMON_WIFI="$COMMON_WIFI nvram_net.txt_murata"
 fi
 
