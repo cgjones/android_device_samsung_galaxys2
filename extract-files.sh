@@ -50,6 +50,8 @@ case "$DEVICE_BUILD_ID" in
   FIRMWARE=XXKI4 ;;
 "GINGERBREAD.DXKG3")
   FIRMWARE=DXKG3 ;;
+"IML74K")
+ FIRMWARE=IML74K ;;
 *)
   echo Your device has unknown firmware $DEVICE_BUILD_ID >&2
   exit 1 ;;
